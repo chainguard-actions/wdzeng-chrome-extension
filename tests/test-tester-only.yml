@@ -1,0 +1,37 @@
+name: Test tester-only mode
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Create dummy zip file
+        run: |
+          mkdir -p /tmp/ext
+          echo "dummy" > /tmp/ext/manifest.json
+          cd /tmp/ext && zip /tmp/extension.zip manifest.json
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          extension-id: fake-extension-id
+          zip-path: /tmp/extension.zip
+          client-id: fake-client-id
+          client-secret: fake-client-secret
+          refresh-token: fake-refresh-token
+          tester-only: "true"
+
+      - name: Assert action ran (expected to fail with invalid credentials)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          # With fake credentials, the action should fail (auth error), not skip or be cancelled
+          if [ "$OUTCOME" = "skipped" ] || [ "$OUTCOME" = "cancelled" ]; then
+            echo "FAIL: action was skipped or cancelled unexpectedly"
+            exit 1
+          fi
+          echo "PASS: action ran with outcome=$OUTCOME"
