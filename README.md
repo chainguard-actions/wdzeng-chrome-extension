@@ -8,6 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
+| v1.3.0 | [`v1.3.0`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v1.3.0) | [`b167f5b`](https://github.com/wdzeng/chrome-extension/commit/b167f5b883d2ade3c4209eccb62fa8307ae44434) |
 | v1.3.2 | [`v1.3.2`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v1.3.2) | [`ca3095b`](https://github.com/wdzeng/chrome-extension/commit/ca3095bc8f067413cc0d06fcb4a5fea87229a787) |
 
 ## Privacy
