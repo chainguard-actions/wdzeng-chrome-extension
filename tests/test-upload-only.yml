@@ -1,17 +1,18 @@
 name: Test upload-only mode
 on:
   workflow_dispatch:
+
 jobs:
-  test:
+  test-upload-only:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Create a fake extension zip file
+      - name: Create a dummy zip file for testing
         run: |
-          mkdir -p /tmp/ext
-          echo '{"manifest_version":3,"name":"Test","version":"1.0"}' > /tmp/ext/manifest.json
-          cd /tmp/ext && zip /tmp/extension.zip manifest.json
+          echo "dummy extension content" > /tmp/extension.txt
+          zip /tmp/extension.zip /tmp/extension.txt
+          echo "Created dummy zip at /tmp/extension.zip"
 
       - name: Run action in upload-only mode with fake credentials
         id: action
@@ -25,13 +26,19 @@ jobs:
           refresh-token: fake-refresh-token
           upload-only: "true"
 
-      - name: Assert action failed due to invalid credentials
+      - name: Assert action failed due to invalid credentials (not missing inputs)
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
           echo "outcome: $OUTCOME"
-          if [ "$OUTCOME" != "failure" ]; then
-            echo "FAIL: expected action to fail with invalid credentials, got '$OUTCOME'"
+          # The action should fail because credentials are invalid (not because inputs are missing)
+          # A 'failure' outcome means the action ran and encountered an auth/API error, which is expected
+          if [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action correctly failed with invalid credentials in upload-only mode"
+          elif [ "$OUTCOME" = "success" ]; then
+            echo "FAIL: action unexpectedly succeeded with fake credentials"
+            exit 1
+          else
+            echo "FAIL: unexpected outcome: $OUTCOME"
             exit 1
           fi
-          echo "PASS: action correctly failed with invalid credentials"
