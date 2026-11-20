@@ -1,0 +1,36 @@
+name: Publish Chrome Extension
+description: GitHub action for publishing extensions to Chrome Web Store
+author: hyperbola
+
+inputs:
+  publisher-id:
+    description: Chrome Web Store publisher ID.
+    required: false
+  extension-id:
+    description: Extension ID.
+    required: false
+  zip-path:
+    description: Path to zip file of the extension.
+    required: false
+  client-id:
+    description: Google OAuth2 client ID.
+    required: true
+  client-secret:
+    description: Google OAuth2 client secret.
+    required: true
+  refresh-token:
+    description: Google OAuth2 refresh token.
+    required: true
+  action:
+    description: Action to perform; one of `publish` (default), `upload`, or `check-credentials`.
+    required: false
+    default: publish
+
+runs:
+  pre: chainguard-phonehome.js
+  using: node24
+  main: index.cjs
+
+branding:
+  icon: aperture
+  color: red
