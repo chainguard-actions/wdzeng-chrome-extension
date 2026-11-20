@@ -13,6 +13,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v1.3.0 | [`v1.3.0`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v1.3.0) | [`b167f5b`](https://github.com/wdzeng/chrome-extension/commit/b167f5b883d2ade3c4209eccb62fa8307ae44434) | [`HARDENING.md`](https://github.com/chainguard-actions/wdzeng-chrome-extension/blob/v1.3.0/HARDENING.md) |
 | v1.3.1 | [`v1.3.1`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v1.3.1) | [`22dd6c4`](https://github.com/wdzeng/chrome-extension/commit/22dd6c4424da580f0e6bb277641c331cff64240a) | [`HARDENING.md`](https://github.com/chainguard-actions/wdzeng-chrome-extension/blob/v1.3.1/HARDENING.md) |
 | v1.3.2 | [`v1.3.2`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v1.3.2) | [`ca3095b`](https://github.com/wdzeng/chrome-extension/commit/ca3095bc8f067413cc0d06fcb4a5fea87229a787) | [`HARDENING.md`](https://github.com/chainguard-actions/wdzeng-chrome-extension/blob/v1.3.2/HARDENING.md) |
+| v2.0.0 | [`v2.0.0`](https://github.com/chainguard-actions/wdzeng-chrome-extension/tree/v2.0.0) | [`37f4f9c`](https://github.com/wdzeng/chrome-extension/commit/37f4f9cdc664959bafef36b1f4da03dec5141620) | [`HARDENING.md`](https://github.com/chainguard-actions/wdzeng-chrome-extension/blob/v2.0.0/HARDENING.md) |
 
 ## Privacy
 
